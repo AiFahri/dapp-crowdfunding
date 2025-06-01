@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Campaigns</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <div class="top-nav">
+      <button class="active" onclick="getAllCampaigns()" id="buttonCampaigns">CAMPAIGNS</button>
+      <button onclick="getDonationHistory()" id="buttonHistory">HISTORY</button>
+    </div>
+    <button class="wallet-address" onclick="connectWallet()" id="buttonConnect">Connect MetaMask</button>
+
+    <div class="filters">
+      <button class="filter-btn active" onclick="getAllCampaigns()" id="buttonAllCampaigns">ALL</button>
+      <button class="filter-btn" onclick="getMyCampaigns()" id="buttonMyCampaigns">MINE</button>
+      <button class="filter-btn" onclick="getActiveCampaigns()" id="buttonActiveCampaigns">ACTIVE</button>
+      <button class="filter-btn" onclick="getInactiveCampaigns()" id="buttonInactiveCampaigns">INACTIVE</button>
+    </div>
+
+    <button class="create-btn" onclick="openModal()" id="buttonCreateCampaign">CREATE CAMPAIGN</button>
+    <div class="modal" id="createModal">
+      <div class="modal-content">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" />
+        </div>
+        <div class="form-group">
+          <label for="description">Deskripsi</label>
+          <textarea id="description" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="target">Target Amount (ETH)</label>
+          <input type="text" id="target" oninput="validateTarget(this)" />
+        </div>
+        <div class="form-group">
+          <label for="deadline">Deadline</label>
+          <input type="date" id="deadline" />
+        </div>
+        <button class="submit-btn" onclick="submitCampaign()">submit</button>
+      </div>
+    </div>
+    <div class="wallet-address" id="walletAddress"></div>
+    <br />
+    <div id="donationToken"></div>
+
+    <div class="cards"></div>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.7.0/dist/ethers.umd.min.js"></script>
+    <script src="assets/js/contract/factory.js"></script>
+    <script src="assets/js/contract/campaign.js"></script>
+    <script src="assets/js/util/util.js"></script>
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>
