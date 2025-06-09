@@ -83,6 +83,29 @@ button.active {
   font-family: monospace;
   color: #333;
 }
+
+#buttonConnect,
+#buttonDisconnect {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+}
+
+#walletAddress {
+  position: absolute;
+  top: 50px;
+  right: 40px;
+}
+
+#donationToken {
+  position: absolute;
+  top: 70px;
+  right: 40px;
+}
+
+#buttonDisconnect {
+  background-color: #ffeeee;
+}
 .create-btn {
   padding: 10px 20px;
   border: 1px solid #555;
@@ -139,4 +162,27 @@ button.active {
   font-style: italic;
   float: right;
   cursor: pointer;
+}
+
+.wallet-controls {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.wallet-button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: 1px solid #555;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.wallet-button:hover {
+  background-color: #f0f0f0;
+}
+
+#buttonDisconnect {
+  background-color: #ffeeee;
 }
