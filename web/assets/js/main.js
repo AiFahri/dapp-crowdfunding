@@ -13,6 +13,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("walletAddress").innerText = "Wallet: " + address;
       document.getElementById("donationToken").innerText = "Donation Token: " + (await window.factory.getApproverToken(address));
       document.getElementById("buttonConnect").style.display = "none";
+      document.getElementById("buttonDisconnect").style.display = "inline-block";
 
       document.getElementById("buttonCreateCampaign").style.display = "inline-block";
       document.getElementById("buttonHistory").style.display = "inline-block";
@@ -21,6 +22,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("walletAddress").innerText = "";
       document.getElementById("donationToken").innerText = "";
       document.getElementById("buttonConnect").style.display = "inline-block";
+      document.getElementById("buttonDisconnect").style.display = "none";
 
       document.getElementById("buttonCreateCampaign").style.display = "none";
       document.getElementById("buttonHistory").style.display = "none";
@@ -29,8 +31,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     await getAllCampaigns();
   } else {
-    // TODO: benerin pesannya
-    alert("please install metamask");
+    alert("Please install MetaMask to use this application");
   }
 
   window.ethereum.on("accountsChanged", async (accounts) => {
@@ -41,6 +42,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("walletAddress").innerText = "Wallet: " + address;
       document.getElementById("donationToken").innerText = "Donation Token: " + (await window.factory.getApproverToken(address));
       document.getElementById("buttonConnect").style.display = "none";
+      document.getElementById("buttonDisconnect").style.display = "inline-block";
 
       document.getElementById("buttonCreateCampaign").style.display = "inline-block";
       document.getElementById("buttonHistory").style.display = "inline-block";
@@ -49,6 +51,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       document.getElementById("walletAddress").innerText = "";
       document.getElementById("donationToken").innerText = "";
       document.getElementById("buttonConnect").style.display = "inline-block";
+      document.getElementById("buttonDisconnect").style.display = "none";
 
       document.getElementById("buttonCreateCampaign").style.display = "none";
       document.getElementById("buttonHistory").style.display = "none";
@@ -73,6 +76,7 @@ async function connectWallet() {
       document.getElementById("walletAddress").innerText = "Wallet: " + address;
       document.getElementById("donationToken").innerText = "Donation Token: " + (await window.factory.getApproverToken(address));
       document.getElementById("buttonConnect").style.display = "none";
+      document.getElementById("buttonDisconnect").style.display = "inline-block";
 
       document.getElementById("buttonCreateCampaign").style.display = "inline-block";
       document.getElementById("buttonHistory").style.display = "inline-block";
@@ -537,3 +541,17 @@ window.onclick = function (e) {
   const modal = document.getElementById("createModal");
   if (e.target === modal) closeModal();
 };
+
+async function disconnectWallet() {
+  window.signer = null;
+  document.getElementById("walletAddress").innerText = "";
+  document.getElementById("donationToken").innerText = "";
+  document.getElementById("buttonConnect").style.display = "inline-block";
+  document.getElementById("buttonDisconnect").style.display = "none";
+
+  document.getElementById("buttonCreateCampaign").style.display = "none";
+  document.getElementById("buttonHistory").style.display = "none";
+  document.getElementById("buttonMyCampaigns").style.display = "none";
+
+  await getAllCampaigns();
+}
