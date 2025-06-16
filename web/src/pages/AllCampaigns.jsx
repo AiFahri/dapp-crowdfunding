@@ -81,10 +81,12 @@ const AllCampaigns = () => {
           campaign.isActive(),
         ]);
 
-        const minTokenApprover = 10;
+        const minTokenApprover = Number(await campaign.getMinTokenApprover());
+        // console.log("minTokenApprover:", minTokenApprover);
         const totalApproved = Number(totalTokenApproved);
 
         const neededTokens = minTokenApprover - totalApproved;
+        // console.log("cek :" neededTokens);
 
         const canWithdraw = owner.toLowerCase() === account?.toLowerCase() && (Number(donated) >= Number(target) || Number(deadline) < Math.floor(Date.now() / 1000));
 
@@ -190,9 +192,10 @@ const AllCampaigns = () => {
     setIsAcceptModalOpen(true);
   };
 
-  const handleAcceptSuccess = () => {
+  const handleAcceptSuccess = async () => {
     setIsAcceptModalOpen(false);
-    fetchCampaigns();
+    await fetchCampaigns();
+    showStatusModal("Success", "Thanks for Contribute to this Campaign!", "success");
   };
 
   return (
