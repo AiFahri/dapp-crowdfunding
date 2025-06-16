@@ -36,6 +36,7 @@ const AcceptTokenModal = ({ isOpen, onClose, campaign, onSuccess }) => {
       if (success) {
         setAmount("");
         onSuccess();
+        onClose();
       }
     } finally {
       setIsSubmitting(false);
@@ -43,27 +44,19 @@ const AcceptTokenModal = ({ isOpen, onClose, campaign, onSuccess }) => {
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onClose={onClose}
-      title="Accept Campaign"
-    >
+    <Modal isOpen={isOpen} onClose={onClose} title="Approve Campaign">
       <div className="mb-4">
-        <div className="bg-gray-50 p-4 rounded-lg mb-4">
-          <h3 className="font-medium mb-1">{campaign?.title || "Campaign"}</h3>
-          <p className="text-sm text-gray-600 mb-2">{campaign ? shortenAddress(campaign.address) : ""}</p>
-          <p className="text-sm text-gray-700 mb-3">{campaign?.description || ""}</p>
+        <h3 className="text-lg font-medium">{campaign?.title}</h3>
+        <p className="text-sm text-gray-600">Campaign Address: {campaign ? shortenAddress(campaign.address) : ""}</p>
+      </div>
 
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Needed Tokens:</span>
-            <span>{neededTokens} Tokens</span>
-          </div>
-
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600">Your Tokens:</span>
-            <span>{donationToken} Tokens</span>
-          </div>
-        </div>
+      <div className="mb-4">
+        <p className="text-sm">
+          This campaign needs <span className="font-medium">{neededTokens}</span> more approval tokens to become active.
+        </p>
+        <p className="text-sm">
+          You have <span className="font-medium">{donationToken}</span> approval tokens available.
+        </p>
       </div>
 
       <form onSubmit={handleSubmit}>

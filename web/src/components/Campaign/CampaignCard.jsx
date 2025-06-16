@@ -56,7 +56,7 @@ const CampaignCard = ({ campaign, onDonate, onAccept, onWithdraw }) => {
                 <img src={ETHlogo} alt="ETH" className="icon" />
                 <span className="text-sm text-gray-600">{isActive ? "Target" : "Need"}</span>
               </div>
-              <div className="text-lg font-medium">{isActive ? `${ethers.formatEther(target)} ETH` : `${neededTokens} ETH`}</div>
+              <div className="text-lg font-medium">{isActive ? `${ethers.formatEther(target)} ETH` : `${neededTokens} Tokens`}</div>
             </div>
 
             <div className="bg-gray-50 rounded-lg p-3">
@@ -139,6 +139,3 @@ const CampaignCard = ({ campaign, onDonate, onAccept, onWithdraw }) => {
 };
 
 export default CampaignCard;
-
-
-
