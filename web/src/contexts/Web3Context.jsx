@@ -251,10 +251,10 @@ export const Web3Provider = ({ children }) => {
       
       console.log(`Calling acceptCampaign with address=${campaignAddress}, amount=${neededTokens}`);
       const tx = await factory.acceptCampaign(campaignAddress, neededTokens);
-      await tx.wait();
-
+      const receipt = await tx.wait();
+      console.log("Transaction confirmed:", receipt);
       await updateDonationToken();
-      showStatusModal("Success", "Campaign accepted successfully!", "success");
+      
       return true;
     } catch (error) {
       console.error("Accept failed:", error);
