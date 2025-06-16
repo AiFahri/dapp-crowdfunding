@@ -33,10 +33,10 @@ const CreateCampaignModal = ({ isOpen, onClose, onSubmit }) => {
       return;
     }
 
-    const [hours, minutes] = deadlineTime.split(':').map(Number);
+    const [hours, minutes] = deadlineTime.split(":").map(Number);
     const selectedDate = new Date(deadlineDate);
     selectedDate.setHours(hours, minutes, 0);
-    
+
     const deadlineTimestamp = Math.floor(selectedDate.getTime() / 1000);
     const now = Math.floor(Date.now() / 1000);
 
@@ -57,7 +57,7 @@ const CreateCampaignModal = ({ isOpen, onClose, onSubmit }) => {
       setTarget("");
       setDeadlineDate("");
       setDeadlineTime("23:59");
-      
+
       setShowSuccessModal(true);
     } catch (error) {
       console.error("Failed to create campaign:", error);
@@ -75,12 +75,7 @@ const CreateCampaignModal = ({ isOpen, onClose, onSubmit }) => {
 
   return (
     <>
-      <Modal
-        isOpen={isOpen && !showSuccessModal}
-        onClose={onClose}
-        title="Create New Campaign"
-        maxWidth="lg"
-      >
+      <Modal isOpen={isOpen && !showSuccessModal} onClose={onClose} title="Create New Campaign" maxWidth="lg">
         <form onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
@@ -111,7 +106,7 @@ const CreateCampaignModal = ({ isOpen, onClose, onSubmit }) => {
               <label className="block text-gray-700 bg-light-gray text-sm font-medium mb-2">Target Amount (ETH)</label>
               <input
                 type="number"
-                step="1"
+                step="0.001"
                 min="0"
                 value={target}
                 onChange={(e) => setTarget(e.target.value)}
@@ -141,9 +136,7 @@ const CreateCampaignModal = ({ isOpen, onClose, onSubmit }) => {
                   className="w-full px-3 py-2 border bg-light-gray border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                   required
                 />
-                <p className="text-xs text-gray-500 mt-1">
-                  Set the exact time (hours:minutes) when the campaign will end
-                </p>
+                <p className="text-xs text-gray-500 mt-1">Set the exact time (hours:minutes) when the campaign will end</p>
               </div>
             </div>
 
@@ -183,5 +176,3 @@ const CreateCampaignModal = ({ isOpen, onClose, onSubmit }) => {
 };
 
 export default CreateCampaignModal;
-
-
