@@ -11,7 +11,7 @@ contract Campaign {
     // how many approver token needed for make campaign active
     // dev value = 10
     // prod value = 100
-    uint public constant MIN_TOKEN_APPROVER = 10;
+    uint public constant MIN_TOKEN_APPROVER = 500;
 
     address public factory;
 
